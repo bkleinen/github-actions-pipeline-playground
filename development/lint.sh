@@ -1,5 +1,5 @@
 echo "running script $0 with $1"
-fail_on=2
+fail_on=4721
 if [ $1 == $fail_on ]; then
   echo "failing on $fail_on"
   exit 1

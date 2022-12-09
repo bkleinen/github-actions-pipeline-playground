@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "disabled_via_nonexistent_branch" branch
   push:
-    branches: [ "main" ]
+    branches: [ "run_all_workflows_on_this_branch" ]
   pull_request:
-    branches: [ "disabled_via_nonexistent_branch" ]
+    branches: [ "run_all_workflows_on_this_branch" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
