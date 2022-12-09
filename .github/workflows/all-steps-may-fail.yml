@@ -1,0 +1,25 @@
+name: All Steps May Fail
+
+on:
+  push:
+    branches:
+      - main
+      - alpha
+      - beta
+
+jobs:
+  build:
+    name: Backend Build
+    run: pipeline/dosomething.sh 1
+  qa-test:
+    name: QA Test
+    run: pipeline/dosomething.sh 1
+  integration-test:
+    name: Integration Test
+    run: pipeline/dosomething.sh 1 integration_fails!
+  deploy-staging:
+    name: Deploy Staging
+    run: pipeline/dosomething.sh 1
+  deploy-production:
+    name: Deploy Production
+    run: pipeline/dosomething.sh 1
