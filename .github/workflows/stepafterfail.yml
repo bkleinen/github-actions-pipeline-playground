@@ -23,7 +23,7 @@ jobs:
       - name: Print Log in any case
         run: cat txt.log
       - name: Print Log On Fail and Fail
-        if: ${{ thetest.fail }}
+        if: ${{ failure() }}
         run: cat txt.log
         run: echo "Must fail!"; exit 4711
 
