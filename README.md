@@ -14,6 +14,7 @@ Inspired by this article on the github blog:
 * [![Publish stories if changed](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/storybook.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/storybook.yml)
 * [![Release](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/release.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/release.yml)
 
+* [![Scheduled](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/scheduled.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/scheduled.yml)
 
 * [![All Jobs and Steps May Fail](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/all-steps-may-fail.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/all-steps-may-fail.yml)
 * [![Complex Pipeline](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/complex-pipeline.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/complex-pipeline.yml)
