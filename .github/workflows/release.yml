@@ -5,14 +5,14 @@ name: Release
 on:
   push:
     branches:
-      - disabled_via_nonexistent_branch
+      - main
       - alpha
       - beta
 
 jobs:
   test:
     name: Test and lint
-    uses: open-sauced/open-sauced/.github/workflows/development.yml@main
+    uses: ./.github/workflows/development.yml@main
 
   docker:
     name: Build container
@@ -22,39 +22,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: "🔧 setup buildx"
-        uses: docker/setup-buildx-action@v1
+        run: release/docker.sh 1
 
       - name: "🔧 cache docker layers"
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+        run: release/docker.sh 2
 
       - name: "🔧 docker meta"
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: ${{ github.repository }}
-          tags: latest
+        run: release/docker.sh 3
 
       - name: "📦 docker build"
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=docker,dest=/tmp/docker.tar
-          push: false
-          cache-from: type=gha, scope=${{ github.workflow }}
-          cache-to: type=gha, scope=${{ github.workflow }}
+        run: release/docker.sh 4
 
       - name: "📂 docker artifacts"
-        uses: actions/upload-artifact@v2
-        with:
-          name: docker
-          path: /tmp/docker.tar
+        run: release/docker.sh 5
 
   build:
     name: Build application
@@ -64,15 +44,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: "🔧 setup node"
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 16
+        run: release/build.sh 1
 
       - name: "🔧 install npm@latest"
-        run: npm i -g npm@latest
+        run: release/build.sh 2
 
       - name: "📦 install dependencies"
-        uses: bahmutov/npm-install@v1
+        run: release/build.sh 3
 
       - name: "📊 repository visualizer"
         id: diagram
@@ -85,13 +63,10 @@ jobs:
           artifact_name: "diagram"
 
       - name: "🚀 static app"
-        run: npm run build
+        run: release/build.sh 4
 
       - name: "📂 production artifacts"
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: build
+        run: release/build.sh 5
 
   release:
     environment:
@@ -110,21 +85,13 @@ jobs:
           fetch-depth: 0
 
       - name: "📂 download docker artifacts"
-        uses: actions/download-artifact@v2
-        with:
-          name: docker
-          path: /tmp
+        run: release/release.sh 1
 
       - name: "📦 load tag"
-        run: |
-          docker load --input /tmp/docker.tar
-          docker image ls -a
+        run: release/release.sh 2
 
       - name: "📂 download build artifacts"
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
+        run: release/release.sh 3
 
       - name: "📂 download diagram artifacts"
         uses: actions/download-artifact@v2
