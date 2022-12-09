@@ -7,16 +7,6 @@ on:
       - alpha
       - beta
 
-
-  build:
-    name: Backend Build
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: |
-          echo Backend Build,
-          echo with two lines.
-
 jobs:
   build-backend:
     name: Backend Build

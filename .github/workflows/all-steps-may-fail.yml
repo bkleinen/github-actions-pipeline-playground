@@ -1,5 +1,8 @@
 name: All Jobs and Steps May Fail
 
+# let steps fail with exit 42 (anything != 0)
+# to see what happens.
+
 on:
   push:
     branches:
@@ -21,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: first failing step
-       run: echo Hello, world!; exit 42
+       run: echo Hello, world!; # exit 42
      - name: second step
        run: echo Hello, world!;
   integration-test:
