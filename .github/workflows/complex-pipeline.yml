@@ -15,103 +15,31 @@ jobs:
     name: Frontend Build
     run: pipeline/dosomething.sh 1
   test-backend:
+    needs:
+      - build-backend
     name: Backend Build
     run: pipeline/dosomething.sh 1
   test-frontend:
+    needs:
+      - build-frontend
     name: Frontend Build
     uses: ./.github/workflows/development.yml
   qa-test:
-    name: QA Test
-    run: pipeline/dosomething.sh 1
+    name: QA Test - Detached
+    run: pipeline/dosomething.sh 1 qa-fails
   integration-test:
+    needs:
+      - test-frontend
+      - test-backend
     name: Integration Test
     run: pipeline/dosomething.sh 1
   deploy-staging:
+    needs:
+      - integration-test
     name: Deploy Staging
     run: pipeline/dosomething.sh 1
   deploy-production:
+    needs:
+      - deploy-staging
     name: Deploy Production
     run: pipeline/dosomething.sh 1
-
-  build:
-    name: Build application
-    runs-on: ubuntu-latest
-    steps:
-      - name: "☁️ checkout repository"
-        uses: actions/checkout@v2
-
-      - name: "🔧 setup node"
-        run: release/build.sh 1
-
-      - name: "🔧 install npm@latest"
-        run: release/build.sh 2
-
-      - name: "📦 install dependencies"
-        run: release/build.sh 3
-
-      - name: "📊 repository visualizer"
-        id: diagram
-        uses: githubocto/repo-visualizer@0.7.1
-        with:
-          excluded_paths: "node_modules,build,.storybook,.netlify,.github,npm-shrinkwrap.json"
-          output_file: "public/diagram.svg"
-          # should_push: false
-          # root_path: "src/"
-          artifact_name: "diagram"
-
-      - name: "🚀 static app"
-        run: release/build.sh 4
-
-      - name: "📂 production artifacts"
-        run: release/build.sh 5
-
-  release:
-    environment:
-      name: production
-      url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
-    name: Semantic release
-    needs:
-      - test
-      - docker
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - name: "☁️ checkout repository"
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: "📂 download docker artifacts"
-        run: release/release.sh 1
-
-      - name: "📦 load tag"
-        run: release/release.sh 2
-
-      - name: "📂 download build artifacts"
-        run: release/release.sh 3
-
-      - name: "📂 download diagram artifacts"
-        uses: actions/download-artifact@v2
-        with:
-          name: diagram
-          path: .
-
-      - name: "🚀 release"
-        id: semantic-release
-        uses: open-sauced/semantic-release-conventional-config@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  cleanup:
-    name: Cleanup actions
-    needs:
-      - release
-    runs-on: ubuntu-latest
-    steps:
-      - name: "♻️ remove build artifacts"
-        uses: geekyeggo/delete-artifact@v1
-        with:
-          name: |
-            build
-            docker
-            diagram
