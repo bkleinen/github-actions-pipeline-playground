@@ -1,4 +1,4 @@
-name: All Steps May Fail
+name: All Jobs and Steps May Fail
 
 on:
   push:
@@ -13,28 +13,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: run the script
-       run: pipeline/dosomething.sh 1
+        run: |
+          echo Backend Build,
+          echo with two lines.
   qa-test:
     name: QA Test
     runs-on: ubuntu-latest
     steps:
      - name: run the script
-       run: pipeline/dosomething.sh 1
+       run: echo Hello, world!
   integration-test:
     runs-on: ubuntu-latest
     name: Integration Test
     steps:
      - name: run the script
-       run: pipeline/dosomething.sh 1 integration_fails!
+       run: echo Hello, world!
   deploy-staging:
     runs-on: ubuntu-latest
     name: Deploy Staging
     steps:
      - name: run the script
-       run: pipeline/dosomething.sh 1
+       run: echo Hello, world!
   deploy-production:
     runs-on: ubuntu-latest
     name: Deploy Production
     steps:
      - name: run the script
-       run: pipeline/dosomething.sh 1
+       run: echo Hello, world!
