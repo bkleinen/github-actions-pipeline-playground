@@ -12,7 +12,12 @@ on:
 jobs:
   test:
     name: Test and lint
-    uses: ./.github/workflows/development.yml@main
+    uses: ./.github/workflows/development.yml
+
+# @main yielded error:
+# uses: ./.github/workflows/development.yml@main
+# Invalid workflow file
+# invalid value workflow reference: cannot specify version when calling local workflows
 
   docker:
     name: Build container
