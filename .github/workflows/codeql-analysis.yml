@@ -29,12 +29,12 @@ jobs:
         # uses: github/codeql-action/init@v1
         # with:
         #   languages: ${{ matrix.language }}
-        run: .codeql/analyse-step1.sh
+        run: codeql/analyse-step1.sh
 
       - name: Autobuild
         # uses: github/codeql-action/autobuild@v1
-        run: .codeql/analyse-step2.sh
+        run: codeql/analyse-step2.sh
 
       - name: Perform CodeQL Analysis
         # uses: github/codeql-action/analyze@v1
-        run: .codeql/analyse-step3.sh
+        run: codeql/analyse-step3.sh
