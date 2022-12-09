@@ -7,13 +7,12 @@ on:
         required: false
         defalt: false
         type: boolean
-  jobs:
-    fail-or-not:
-      name: Fails depending on input
-      steps:
-        - name: One Step
-          run: echo "About to make the decision...."
-        - name: Decide
-          if: ${{ inputs.fail }}
-          run: echo "Must fail!"; exit 4711
-  
+jobs:
+  fail-or-not:
+    name: Fails depending on input
+    steps:
+      - name: One Step
+        run: echo "About to make the decision...."
+      - name: Decide
+        if: ${{ inputs.fail }}
+        run: echo "Must fail!"; exit 4711
