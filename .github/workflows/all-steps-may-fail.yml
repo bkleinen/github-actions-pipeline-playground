@@ -20,8 +20,10 @@ jobs:
     name: QA Test
     runs-on: ubuntu-latest
     steps:
-     - name: run the script
-       run: echo Hello, world!
+     - name: first failing step
+       run: echo Hello, world!; exit 42
+     - name: second step
+           run: echo Hello, world!;
   integration-test:
     runs-on: ubuntu-latest
     name: Integration Test
