@@ -10,6 +10,7 @@ on:
 jobs:
   fail-or-not:
     name: Fails depending on input
+    runs-on: ubuntu-latest
     steps:
       - name: One Step
         run: echo "About to make the decision...."
