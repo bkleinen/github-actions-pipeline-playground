@@ -9,7 +9,7 @@ on:
         type: boolean
 jobs:
   fail-or-not:
-    name: Fails depending on input
+    name: fon # fails depending on input, shortened to have a clearer wf visualization
     runs-on: ubuntu-latest
     steps:
       - name: One Step
