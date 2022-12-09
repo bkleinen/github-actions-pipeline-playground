@@ -7,18 +7,37 @@ on:
       - alpha
       - beta
 
+
+  build:
+    name: Backend Build
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: |
+          echo Backend Build,
+          echo with two lines.
+
 jobs:
   build-backend:
     name: Backend Build
-    run: pipeline/dosomething.sh 1
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1
   build-frontend:
     name: Frontend Build
-    run: pipeline/dosomething.sh 1
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1
   test-backend:
     needs:
       - build-backend
     name: Backend Build
-    run: pipeline/dosomething.sh 1
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1
   test-frontend:
     needs:
       - build-frontend
@@ -26,20 +45,32 @@ jobs:
     uses: ./.github/workflows/development.yml
   qa-test:
     name: QA Test - Detached
-    run: pipeline/dosomething.sh 1 qa-fails
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1 qa-fails
   integration-test:
     needs:
       - test-frontend
       - test-backend
     name: Integration Test
-    run: pipeline/dosomething.sh 1
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1
   deploy-staging:
     needs:
       - integration-test
     name: Deploy Staging
-    run: pipeline/dosomething.sh 1
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1
   deploy-production:
     needs:
       - deploy-staging
     name: Deploy Production
-    run: pipeline/dosomething.sh 1
+    runs-on: ubuntu-latest
+    steps:
+     - name: run the script
+       run: pipeline/dosomething.sh 1

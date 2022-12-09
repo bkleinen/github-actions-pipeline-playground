@@ -23,7 +23,7 @@ jobs:
      - name: first failing step
        run: echo Hello, world!; exit 42
      - name: second step
-           run: echo Hello, world!;
+       run: echo Hello, world!;
   integration-test:
     runs-on: ubuntu-latest
     name: Integration Test
