@@ -10,25 +10,30 @@ on:
 jobs:
   build:
     name: Backend Build
+    runs-on: ubuntu-latest
     steps:
      - name: run the script
        run: pipeline/dosomething.sh 1
   qa-test:
     name: QA Test
+    runs-on: ubuntu-latest
     steps:
      - name: run the script
        run: pipeline/dosomething.sh 1
   integration-test:
+    runs-on: ubuntu-latest
     name: Integration Test
     steps:
      - name: run the script
        run: pipeline/dosomething.sh 1 integration_fails!
   deploy-staging:
+    runs-on: ubuntu-latest
     name: Deploy Staging
     steps:
      - name: run the script
        run: pipeline/dosomething.sh 1
   deploy-production:
+    runs-on: ubuntu-latest
     name: Deploy Production
     steps:
      - name: run the script
