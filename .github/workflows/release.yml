@@ -99,10 +99,7 @@ jobs:
         run: release/release.sh 3
 
       - name: "📂 download diagram artifacts"
-        uses: actions/download-artifact@v2
-        with:
-          name: diagram
-          path: .
+        run: release/release.sh 4
 
       - name: "🚀 release"
         id: semantic-release
