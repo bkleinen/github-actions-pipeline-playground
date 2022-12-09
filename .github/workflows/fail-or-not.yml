@@ -5,7 +5,7 @@ on:
     inputs:
       fail:
         required: false
-        defalt: false
+        default: false
         type: boolean
 jobs:
   fail-or-not:
