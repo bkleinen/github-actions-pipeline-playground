@@ -11,8 +11,8 @@ jobs:
   build-backend:
     name: Backend Build
     uses: ./.github/workflows/fail-or-not.yml
-      with:
-        fail: true
+    with:
+      fail: true
   build-frontend:
     name: Frontend Build
     runs-on: ubuntu-latest
