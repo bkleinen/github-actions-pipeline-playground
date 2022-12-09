@@ -10,10 +10,9 @@ on:
 jobs:
   build-backend:
     name: Backend Build
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1
+    uses: ./.github/workflows/fail-or-not.yml
+      with:
+        fail: true
   build-frontend:
     name: Frontend Build
     runs-on: ubuntu-latest
