@@ -38,13 +38,12 @@ jobs:
         run:
           - echo "some important message" > txt.log
           - exit 42
+      - name: Print Log On Fail
+        if: ${{ failure() }}
+        run: cat txt.log
+        run: echo "Must not fail anymore!" #; exit 4711
       - name: Happy
         run: echo "I'm happily in between but will not run"
       - name: Print Log in any case
-        if: always()
+        if:  ${{ always() }}
         run: cat txt.log
-      - name: Print Log On Fail
-        if: always()
-        if: ${{ thetest.fail }}
-        run: cat txt.log
-        run: echo "Must not fail anymore!" #; exit 4711
