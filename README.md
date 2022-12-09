@@ -14,11 +14,16 @@ Inspired by this article on the github blog:
 * [![Publish stories if changed](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/storybook.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/storybook.yml)
 * [![Release](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/release.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/release.yml)
 
+
+* [![All Jobs and Steps May Fail](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/all-steps-may-fail.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/all-steps-may-fail.yml)
+* [![Complex Pipeline](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/complex-pipeline.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/complex-pipeline.yml)
+* [![Fail or Not](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/fail-or-not.yml/badge.svg)](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/fail-or-not.yml)
+
 ## How to use this repo
 
 The most interesting Workflow is the release Workflow - see [Actions · bkleinen/github-actions-pipeline-playground](https://github.com/bkleinen/github-actions-pipeline-playground/actions/workflows/release.yml)
 The "Semantic Release" job depends on four other jobs, 2 of them in development.yml
-It represents the deployment pipeline with 
+It represents the deployment pipeline with
 - release.yml is triggered by push on master
 - development.yml is triggered by push in PR, and used in release.yml
 - CodeQL runs quietly for all pushes but is not a precondition in the deployment pipeline.

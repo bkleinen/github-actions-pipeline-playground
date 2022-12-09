@@ -11,55 +11,37 @@ jobs:
   build-backend:
     name: Backend Build
     uses: ./.github/workflows/fail-or-not.yml
-    with:
-      fail: true
+    #with:
+    #  fail: true
   build-frontend:
     name: Frontend Build
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1
+    uses: ./.github/workflows/fail-or-not.yml
   test-backend:
     needs:
       - build-backend
-    name: Backend Build
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1
+    name: Backend Test
+    uses: ./.github/workflows/fail-or-not.yml
   test-frontend:
     needs:
       - build-frontend
-    name: Frontend Build
+    name: Frontend Test
     uses: ./.github/workflows/development.yml
   qa-test:
     name: QA Test - Detached
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1 qa-fails
+    uses: ./.github/workflows/fail-or-not.yml
   integration-test:
     needs:
       - test-frontend
       - test-backend
     name: Integration Test
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1
+    uses: ./.github/workflows/fail-or-not.yml
   deploy-staging:
     needs:
       - integration-test
     name: Deploy Staging
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1
+    uses: ./.github/workflows/fail-or-not.yml
   deploy-production:
     needs:
       - deploy-staging
     name: Deploy Production
-    runs-on: ubuntu-latest
-    steps:
-     - name: run the script
-       run: pipeline/dosomething.sh 1
+    uses: ./.github/workflows/fail-or-not.yml
