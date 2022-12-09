@@ -34,13 +34,14 @@ jobs:
         run: echo "About to make the decision...."
       - name: "Step Two: The failing test"
         id: thetest
-        run:
-          - echo "some important message" > txt.log
-          - exit 42
+        run: |
+          echo "some important message" > txt.log
+          exit 42
       - name: Print Log On Fail
         if: ${{ failure() }}
-        run: cat txt.log
-        run: echo "Must not fail anymore!" #; exit 4711
+        run: |
+          cat txt.log
+          echo "Must not fail anymore!" #; exit 4711
       - name: Happy
         run: echo "I'm happily in between but will not run"
       - name: Print Log in any case
