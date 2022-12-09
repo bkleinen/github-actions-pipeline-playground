@@ -25,7 +25,6 @@ jobs:
       - name: Print Log On Fail and Fail
         if: ${{ failure() }}
         run: cat txt.log
-        run: echo "Must fail!"; exit 4711
 
   with-always:
     name: Using Always
