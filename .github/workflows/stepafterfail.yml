@@ -1,0 +1,34 @@
+
+name: AlwaysContinue
+
+on:
+  workflow_call:
+    inputs:
+      fail:
+        required: false
+        default: false
+        type: boolean
+jobs:
+  go-on:
+    name: always continue # fails depending on input, shortened to have a clearer wf visualization
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step One Step
+        run: echo "About to make the decision...."
+      - name: "Step Two: The failing test"
+        id: thetest
+        continue-on-error: true
+        run:
+          - echo "some important message" > txt.log
+          - exit 42
+      - name: Happy
+        run: echo "I'm happily in between"
+      - name: Print Log in any case
+        run: cat txt.log
+      - name: Print Log On Fail and Fail
+        if: ${{ thetest.fail }}
+        run: cat txt.log
+        run: echo "Must fail!"; exit 4711
+
+
+continue-on-error: true
