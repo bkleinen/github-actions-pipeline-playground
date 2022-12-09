@@ -5,7 +5,7 @@ name: Publish stories if changed
 on:
   push:
     branches:
-      - main
+      - disabled_via_nonexistent_branch
     paths:
       - stories/**
       - src/components/**

@@ -5,7 +5,7 @@ name: CodeQL
 on:
   push:
     branches:
-      - main
+      - disabled_via_nonexistent_branch
   pull_request:
   schedule:
     - cron: '56 5 * * 1'

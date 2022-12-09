@@ -5,7 +5,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - disabled_via_nonexistent_branch
       - alpha
       - beta
 
