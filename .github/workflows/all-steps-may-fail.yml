@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: run the script
-        run: |
+       run: |
           echo Backend Build,
           echo with two lines.
   qa-test:
