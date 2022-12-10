@@ -15,5 +15,6 @@ jobs:
     # invalid value workflow reference: workflows must be defined at the top level of the .github/workflows/ directory
     # uses: ./.github/workflows/about_actions/called_workflow.yml
   call_within_step:
-    - name: Call From Step
-      uses: ./.github/workflows/about_actions_called_workflow.yml
+    steps:
+      - name: Call From Step
+        uses: ./.github/workflows/about_actions_called_workflow.yml
