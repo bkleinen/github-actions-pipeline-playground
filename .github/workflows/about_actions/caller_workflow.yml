@@ -3,9 +3,7 @@ name: Caller Workflow
 on:
   push:
     branches:
-      - main
-      - alpha
-      - beta
+      - about_actions
 
 jobs:
   build-backend:
