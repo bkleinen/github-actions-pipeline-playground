@@ -8,6 +8,8 @@ on:
 jobs:
   build-backend:
     name: Call Local Workflow # workflows can be called like this:
-    uses: ./.github/workflows/about_actions/called_workflow.yml
+    uses: ./.github/workflows/about_actions_called_workflow.yml
+    # invalid value workflow reference: workflows must be defined at the top level of the .github/workflows/ directory
+    # uses: ./.github/workflows/about_actions/called_workflow.yml
     #with:
     #  fail: true
