@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - about_actions
-      
+
 # from https://docs.github.com/en/actions/creating-actions/creating-a-composite-action#testing-out-your-action-in-a-workflow
 jobs:
   hello_world_job:
@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call From Step
+        run: echo "can only call actions, not workflows from here!"
 
         # this fails:
         # uses: ./.github/workflows/about_actions_called_workflow.yml
