@@ -14,7 +14,7 @@ jobs:
         run: echo "About to make the decision...."
       - name: "Step Two: The failing test"
         id: thetest
-        continue-on-error: true
+        continue-on-error: true  # step succeeds
         run: |
           echo "some important message" > txt.log
           exit 42
@@ -23,7 +23,7 @@ jobs:
       - name: Print Log in any case
         run: cat txt.log
       - name: Print Log On Fail and Fail
-        if: ${{ failure() }}
+        if: ${{ failure() }} # nothing happens, no failure here
         run: cat txt.log
 
   with-always:
