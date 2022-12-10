@@ -1,0 +1,15 @@
+name: Caller Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - alpha
+      - beta
+
+jobs:
+  build-backend:
+    name: Call Local Workflow # workflows can be called like this:
+    uses: ./.github/workflows/about_actions/called_workflow.yml
+    #with:
+    #  fail: true
