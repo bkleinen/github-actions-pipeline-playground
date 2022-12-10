@@ -1,0 +1,15 @@
+name: about_expressions
+on:
+  push:
+    branches:
+      - about_actions
+env:
+  MAP: ${{ { key1: value1, key2: value2 } }}
+# from https://docs.github.com/en/actions/creating-actions/creating-a-composite-action#testing-out-your-action-in-a-workflow
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - run echo "key1 ${{ MAP['key1'] }}"
+      - run echo "key2 ${{ MAP['key2'] }}"
