@@ -10,8 +10,15 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
+
     steps:
       - uses: actions/checkout@v3
+      - name: ls
+        run: |
+          echo "------- /home/runner/work/github-actions-pipeline-playground/github-actions-pipeline-playground/.github/actions/hello"
+          ls -lart /home/runner/work/github-actions-pipeline-playground/github-actions-pipeline-playground/.github/actions/hello
+          echo "--------./.github/actions/hello"
+          ls -lart ./.github/actions/hello
       - id: foo
         uses: ./.github/actions/hello
         with:
@@ -20,7 +27,7 @@ jobs:
         shell: bash
 
   call_workflow:
-    name: Call Local Workflow # workflows can be called like this:
+    name: Call Local Workflow # workflows can NOT be called like this:
     uses: ./.github/workflows/about_actions_called_workflow.yml
     #with:
     #  fail: true
