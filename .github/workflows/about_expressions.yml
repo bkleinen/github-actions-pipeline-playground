@@ -4,7 +4,7 @@ on:
     branches:
       - about_actions
 env:
-  MAP: ${{ { 'key1': 'value1', 'key2': 'value2' } }}
+  MAP: { 'key1': 'value1', 'key2': 'value2' }
 # from https://docs.github.com/en/actions/creating-actions/creating-a-composite-action#testing-out-your-action-in-a-workflow
 jobs:
   hello_world_job:
