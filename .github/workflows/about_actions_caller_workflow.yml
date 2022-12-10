@@ -4,8 +4,21 @@ on:
   push:
     branches:
       - about_actions
-
+      
+# from https://docs.github.com/en/actions/creating-actions/creating-a-composite-action#testing-out-your-action-in-a-workflow
 jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: actions/hello-world-composite-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
+
   call_workflow:
     name: Call Local Workflow # workflows can be called like this:
     uses: ./.github/workflows/about_actions_called_workflow.yml
@@ -18,4 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call From Step
-        uses: ./.github/workflows/about_actions_called_workflow.yml
+
+        # this fails:
+        # uses: ./.github/workflows/about_actions_called_workflow.yml
+        # Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under
+        # '/home/runner/work/github-actions-pipeline-playground/github-actions-pipeline-playground/.github/workflows/about_actions_called_workflow.yml'.
+        # Did you forget to run actions/checkout before running your local action?
